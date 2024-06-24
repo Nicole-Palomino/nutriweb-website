@@ -45,15 +45,10 @@ if (isset($message)) {
                     $fetch_profile = $select_profile -> fetch(PDO::FETCH_ASSOC);
             ?>
             <p class="name"><?= $fetch_profile['name']; ?></p>
-            <p class="email"><?= $fetch_profile['email']; ?></p>
             <div class="flex">
                 <a href="profile.php" class="btn">Perfil</a>
                 <a href="components/user_logout.php" onclick="return confirm('Desea cerrar sessión?');" class="delete-btn">Salir</a>
             </div>
-            <p class="account">
-                <a href="login.php">Iniciar Sesión</a> or
-                <a href="register.php">Registrarse</a>
-            </p>
             <?php
                 } else {
             ?>

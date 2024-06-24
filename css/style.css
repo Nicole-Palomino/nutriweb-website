@@ -241,8 +241,7 @@ section {
     }
 }
 
-.header .flex .profile .name,
-.header .flex .profile .email {
+.header .flex .profile .name{
     font-size: 2rem;
     color: var(--black);
     margin-bottom: .5rem;
