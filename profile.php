@@ -20,7 +20,7 @@ if(isset($_SESSION['user_id'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUTRIWEB | PERFIL</title>
 
-    <link rel="shortcut icon" href="images/NutriWeb.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/NutriWeb.ico" type="image/x-icon">
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -28,7 +28,7 @@ if(isset($_SESSION['user_id'])){
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php include 'components/use_header.php' ?>
+    <?php include 'components/user_header.php' ?>
 
     <section class="user-details">
         <div class="user">
@@ -46,5 +46,9 @@ if(isset($_SESSION['user_id'])){
             <a href="update_address.php" class="btn">Actualizar dirección</a>
         </div>
     </section>
+
+    <?php include 'components/footer.php'; ?>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
