@@ -33,7 +33,7 @@ include 'components/add_cart.php';
 
     <div class="heading">
         <h3>Nuestro Menú</h3>
-        <p><a href="home.php">Inicio</a> <span> / Menú</span></p>
+        <p><a href="index.php">Inicio</a> <span> / Menú</span></p>
     </div>
     
     <section class="products">

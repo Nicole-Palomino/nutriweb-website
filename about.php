@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
 
     <div class="heading">
         <h3>Acerca de nosotros</h3>
-        <p><a href="home.php">Inicio</a> <span> / Acerca de nosotros</span></p>
+        <p><a href="index.php">Inicio</a> <span> / Acerca de nosotros</span></p>
     </div>
 
     <section class="about">

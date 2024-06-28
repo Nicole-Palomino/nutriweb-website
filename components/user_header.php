@@ -15,10 +15,10 @@ if (isset($message)) {
 
 <header class="header">
     <section class="flex">
-        <a href="home.php" class="logo">NUTRIWEB</a>
+        <a href="index.php" class="logo">NUTRIWEB</a>
 
         <nav class="navbar">
-            <a href="home.php">INICIO</a>
+            <a href="index.php">INICIO</a>
             <a href="about.php">ACERCA</a>
             <a href="menu.php">MENÚ</a>
             <a href="orders.php">ÓRDENES</a>
