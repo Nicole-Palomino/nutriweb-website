@@ -96,7 +96,7 @@ section {
     margin-top: 1rem;
     display: inline-block;
     font-size: 2rem;
-    padding: 1.5rem;
+    padding: 1rem 3rem;
     cursor: pointer;
     text-transform: capitalize;
     transition: .2s linear;
@@ -114,7 +114,7 @@ section {
 
 .btn:hover,
 .delete-btn:hover {
-    letter-spacing: .1rem;
+    letter-spacing: .2rem;
 }
 
 .disabled {
@@ -296,7 +296,7 @@ section {
 }
 
 .swiper-pagination-bullet-active {
-    background-color: var(--secondary);
+    background-color: var(--primary);
 }
 
 .category .box-container {
@@ -326,11 +326,15 @@ section {
 }
 
 .category .box-container .box:hover {
-    color: var(--black);
+    background-color: var(--black);
+}
+
+.category .box-container .box:hover img {
+    filter: invert(1);
 }
 
 .category .box-container .box:hover h3 {
-    color: var(--secondary);
+    color: var(--white);
 }
 
 .products .box-container {
@@ -930,6 +934,12 @@ section {
 
 
 
+
+
+
+
+
+
 .footer .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
@@ -999,6 +1009,10 @@ section {
 .loader img {
     height: 25rem;
 }
+
+
+
+/* media queries  */
 
 @media (max-width:991px) {
 
@@ -1073,4 +1087,16 @@ section {
         gap: 0;
     }
 
+}
+
+.products .box-container .box .description {
+    font-size: 1.5rem;
+    color: var(--red);
+    margin: 1rem 0;
+}
+
+.quick-view form .description {
+    font-size: 1.5rem;
+    color: var(--red);
+    margin: .5rem 0;
 }

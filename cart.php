@@ -5,33 +5,33 @@ include 'components/connect.php';
 session_start();
 
 if(isset($_SESSION['user_id'])){
-   $user_id = $_SESSION['user_id'];
-}else{
-   $user_id = '';
-   header('location:home.php');
+    $user_id = $_SESSION['user_id'];
+} else{
+    $user_id = '';
+    header('location:home.php');
 };
 
 if(isset($_POST['delete'])){
-   $cart_id = $_POST['cart_id'];
-   $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE id = ?");
-   $delete_cart_item->execute([$cart_id]);
-   $message[] = 'Artículo eliminado!';
+    $cart_id = $_POST['cart_id'];
+    $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE id = ?");
+    $delete_cart_item->execute([$cart_id]);
+    $message[] = 'Artículo eliminado!';
 }
 
 if(isset($_POST['delete_all'])){
-   $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
-   $delete_cart_item->execute([$user_id]);
-   // header('location:cart.php');
-   $message[] = 'Todo eliminado del carrito!';
+    $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
+    $delete_cart_item->execute([$user_id]);
+    // header('location:cart.php');
+    $message[] = 'Todo eliminado del carrito!';
 }
 
 if(isset($_POST['update_qty'])){
-   $cart_id = $_POST['cart_id'];
-   $qty = $_POST['qty'];
-   $qty = filter_var($qty, FILTER_SANITIZE_STRING);
-   $update_qty = $conn->prepare("UPDATE `cart` SET quantity = ? WHERE id = ?");
-   $update_qty->execute([$qty, $cart_id]);
-   $message[] = 'Cantidad actualizada';
+    $cart_id = $_POST['cart_id'];
+    $qty = $_POST['qty'];
+    $qty = filter_var($qty, FILTER_SANITIZE_SPECIAL_CHARS);
+    $update_qty = $conn->prepare("UPDATE `cart` SET quantity = ? WHERE id = ?");
+    $update_qty->execute([$qty, $cart_id]);
+    $message[] = 'Cantidad actualizada';
 }
 
 $grand_total = 0;
@@ -57,53 +57,58 @@ $grand_total = 0;
 
     <div class="heading">
         <h3>CARRITO DE COMPRAS</h3>
-        <p><a href="home.php">home</a> <span> / cart</span></p>
+        <p><a href="home.php">Inicio</a> <span> / Carrito de compras</span></p>
     </div>
 
     <section class="products">
-        <h1 class="title"> TU CARRITO DE COMPRAS</h1>
+
+        <h1 class="title">Tu carrito de compras</h1>
+
         <div class="box-container">
+
             <?php
                 $grand_total = 0;
-                $select_cart = $conn -> prepare("SELECT * FROM `cart` WHERE user_id = ?");
-                $select_cart -> execute([$user_id]);
-                if ($select_cart -> rowCount() > 0) {
-                    while($fetch_cart = $select_cart -> fetch(PDO::FETCH_ASSOC)){
+                $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+                $select_cart->execute([$user_id]);
+                if($select_cart->rowCount() > 0){
+                    while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
             ?>
-            <form action="" class="box" method="post">
+            <form action="" method="post" class="box">
                 <input type="hidden" name="cart_id" value="<?= $fetch_cart['id']; ?>">
                 <a href="quick_view.php?pid=<?= $fetch_cart['pid']; ?>" class="fas fa-eye"></a>
-                <button type="submit" class="fas fa-tiems" name="delete" onclick="return confirm('¿Desea eliminar este platillo?')"></button>
+                <button type="submit" class="fas fa-times" name="delete" onclick="return confirm('¿Desea eliminar este artículo?');"></button>
                 <img src="uploaded_img/<?= $fetch_cart['image']; ?>" alt="">
                 <div class="name"><?= $fetch_cart['name']; ?></div>
                 <div class="flex">
                     <div class="price"><span>S/</span><?= $fetch_cart['price']; ?></div>
-                    <input type="number" name="qty" class="qty" max="99" value="<?= $fetch_cart['quantity']; ?>" maxlength="2">
+                    <input type="number" name="qty" class="qty" min="1" max="99" value="<?= $fetch_cart['quantity']; ?>" maxlength="2">
                     <button type="submit" class="fas fa-edit" name="update_qty"></button>
                 </div>
-                <div class="subtotal"> Sub Total: <span>S/<?= $subtotal = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span></div>
+                <div class="sub-total"> SubTotal : <span>S/<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?></span> </div>
             </form>
             <?php
-                        $grand_total += $subtotal;
+                    $grand_total += $sub_total;
                     }
-                } else {
-                    echo '<p class="empty">Tu carrito esta vacío</p>';
+                }else{
+                    echo '<p class="empty">Tu carrito está vacío</p>';
                 }
             ?>
+
         </div>
 
         <div class="cart-total">
-            <p>Total: <span>S/<?= $grand_total; ?></span></p>
-            <a href="checkout.php" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>">Proceder a la compra</a>
+            <p>Total : <span>S/<?= $grand_total; ?></span></p>
+            <a href="checkout.php" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>">Proceder la compra</a>
         </div>
 
         <div class="more-btn">
             <form action="" method="post">
-                <button type="submit" class="delete-btn <?= ($grand_total > 1)?'':'disabled'; ?>" name="delete_all" onclick="return confirm('¿Desea eliminar todos los artículos?');">Eliminar todo</button>
+                <button type="submit" class="delete-btn <?= ($grand_total > 1)?'':'disabled'; ?>" name="delete_all" onclick="return confirm('¿Desea eliminar todo el carrito?');">Eliminar todo</button>
             </form>
-            <a href="menu.php" class="btn"> Continuar comprando </a>
+            <a href="menu.php" class="btn">Continuar comprando</a>
         </div>
-    </section>
+
+        </section>
 
     <?php include 'components/footer.php' ?>
 

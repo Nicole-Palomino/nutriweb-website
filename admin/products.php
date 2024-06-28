@@ -102,31 +102,32 @@ if(isset($_GET['delete'])){
 
     <section class="show-products" style="padding-top: 0;">
         <div class="box-container">
-        <?php
-            $show_products = $conn->prepare("SELECT * FROM `products`");
-            $show_products->execute();
-            if($show_products->rowCount() > 0){
-                while($fetch_products = $show_products->fetch(PDO::FETCH_ASSOC)){  
-        ?>
+            <?php
+                $show_products = $conn->prepare("SELECT * FROM `products`");
+                $show_products->execute();
+                if($show_products->rowCount() > 0){
+                    while($fetch_products = $show_products->fetch(PDO::FETCH_ASSOC)){  
+            ?>
 
-        <div class="box">
-            <img src="../uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-            <div class="flex">
-                <div class="price"><span>S/</span><?= $fetch_products['price']; ?><span>/-</span></div>
-                <div class="category"><?= $fetch_products['category']; ?></div>
+            <div class="box">
+                <img src="../uploaded_img/<?= $fetch_products['image']; ?>" alt="">
+                <div class="flex">
+                    <div class="price"><span>S/</span><?= $fetch_products['price']; ?></div>
+                    <div class="category"><?= $fetch_products['category']; ?></div>
+                </div>
+                <div class="name"><?= $fetch_products['name']; ?></div>
+                <div class="description"><?= $fetch_products['description']; ?></div>
+                <div class="flex-btn">
+                    <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">Actualizar</a>
+                    <a href="products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('¿Desea eliminar el producto?');">Eliminar</a>
+                </div>
             </div>
-            <div class="name"><?= $fetch_products['name']; ?></div>
-            <div class="flex-btn">
-                <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">Actualizar</a>
-                <a href="products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('¿Desea eliminar el producto?');">Eliminar</a>
-            </div>
-        </div>
-        <?php
+            <?php
+                    }
+                }else{
+                    echo '<p class="empty">No hay productos agregados!</p>';
                 }
-            }else{
-                echo '<p class="empty">No hay productos agregados!</p>';
-            }
-        ?>
+            ?>
         </div>
     </section>
 
