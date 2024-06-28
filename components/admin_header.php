@@ -31,16 +31,12 @@ if(isset($message)){
 
         <div class="profile">
             <?php
-                $slect_profile = $conn->prepare("SELECT * FROM `admin` WHERE id = ?");
-                $slect_profile->execute([$admin_id]);
+                $select_profile = $conn->prepare("SELECT * FROM `admin` WHERE id = ?");
+                $select_profile->execute([$admin_id]);
                 $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
             ?>
             <p><?= $fetch_profile['name']; ?></p>
             <a href="update_profile.php" class="btn">Actualizar Perfil</a>
-            <div class="flex-btn">
-                <a href="admin_login.php" class="option-btn">Iniciar Sesión</a>
-                <a href="register_admin.php" class="option-btn">Registrarse</a>
-            </div>
             <a href="../components/admin_logout.php" onclick="return confirm('¿Desea cerrar sesión?');" class="delete-btn">Salir</a>
         </div>
     </section>
