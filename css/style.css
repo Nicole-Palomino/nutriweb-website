@@ -325,16 +325,8 @@ section {
     text-transform: capitalize;
 }
 
-.category .box-container .box:hover {
-    background-color: var(--black);
-}
-
-.category .box-container .box:hover img {
-    filter: invert(1);
-}
-
 .category .box-container .box:hover h3 {
-    color: var(--white);
+    color: var(--secondary);
 }
 
 .products .box-container {

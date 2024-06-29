@@ -5,7 +5,7 @@
         <div class="box">
             <img src="img/email-icon.png" alt="">
             <h3>Nuestro correo</h3>
-            <a href="mailto:shaikhanas@gmail.com">nutri_web@gmail.com</a>
+            <a href="mailto:shaikhanas@gmail.com">lima.saludable2024@gmail.com</a>
         </div>
 
         <div class="box">

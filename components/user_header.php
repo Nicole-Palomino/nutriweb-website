@@ -53,7 +53,7 @@ if (isset($message)) {
                 } else {
             ?>
             <p class="name">¿Ya tienes una cuenta?</p>
-            <p class="email">Inicie Sesión</p>
+            <p class="account">Inicie Sesión</p>
             <a href="login.php" class="btn">Iniciar Sesión</a>
             <?php
                 }
