@@ -27,11 +27,11 @@ Puedes ver una demostración en vivo de la página web [aquí](http://nutriweb.w
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/tuusuario/nutriweb.git
+   git clone https://github.com/Nicole-Palomino/nutriweb-website.git
 
 2. Navega al directorio:
     ```bash
-    cd nutriweb
+    cd nutriweb-website
 
 3. Inicia el servidor.
 
